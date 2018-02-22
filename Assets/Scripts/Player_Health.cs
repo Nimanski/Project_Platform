@@ -25,7 +25,7 @@ public class Player_Health : MonoBehaviour
     }
 
     void Die ()
-        {
+    {
             SceneManager.LoadScene("Proto_Platformer");
     }
 }

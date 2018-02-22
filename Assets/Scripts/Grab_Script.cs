@@ -18,24 +18,12 @@ public class Grab_Script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.V)){
-
+		if(Input.GetButtonDown("Grab")) {
 			if(!grabbed) {
-				Physics2D.queriesStartInColliders = false;
-				hit = Physics2D.Raycast (rayPoint.position, Vector2.right * transform.localScale.x,distance);
-
-				if(hit.collider !=null && hit.collider.tag=="grabbable"){
-					grabbed = true;
-				}
-
-
+                GrabObject();
 			} 
 			else {
-				//throw
-				grabbed=false;
-				if(hit.collider.gameObject.GetComponent<Rigidbody2D>() !=null) {
-					hit.collider.gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (transform.localScale.x, 2) * throwForce;
-				}
+                ThrowObject();
 			}
 		}
 
@@ -48,4 +36,24 @@ public class Grab_Script : MonoBehaviour {
 		Gizmos.color = Color.green;
 		Gizmos.DrawLine (rayPoint.position, rayPoint.position + Vector3.right * rayPoint.localScale.x * distance);
 	}
+
+    private void GrabObject()
+    {
+        Physics2D.queriesStartInColliders = false;
+        hit = Physics2D.Raycast(rayPoint.position, Vector2.right * transform.localScale.x, distance);
+
+        if (hit.collider != null && hit.collider.tag == "grabbable")
+        {
+            grabbed = true;
+        }
+    }
+
+    private void ThrowObject()
+    {
+        grabbed = false;
+        if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 2) * throwForce;
+        }
+    }
 }
