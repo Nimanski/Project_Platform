@@ -19,13 +19,12 @@ public class Grab_Script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetButtonDown("Grab")) {
-			if(!grabbed) {
-                GrabObject();
-			} 
-			else {
-                ThrowObject();
-			}
+            GrabObject();
 		}
+        if (Input.GetButtonUp("Grab") && grabbed)
+        {
+            ThrowObject();
+        }
 
 		if (grabbed)
 			hit.collider.gameObject.transform.position = holdPoint.position;
