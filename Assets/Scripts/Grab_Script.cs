@@ -18,7 +18,12 @@ public class Grab_Script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 		if(Input.GetButtonDown("Grab")) {
+=======
+		if(Input.GetButtonDown("Grab")){
+
+>>>>>>> 7b18128d52422fd0eff7fa4b23e2d9a85169ef34
 			if(!grabbed) {
                 GrabObject();
 			} 
