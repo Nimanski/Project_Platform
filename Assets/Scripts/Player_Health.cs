@@ -38,6 +38,27 @@ public class Player_Health : MonoBehaviour
 		}
 	}
 
+	public void Damage(int dmg){
+
+		curHealth -= dmg;
+
+	}
+
+//	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
+//
+//		float timer = 0;
+//		while(knockDur > timer) {
+//
+//			timer += Time.deltaTime;
+//
+//			GetComponent<Rigidbody2D> ().AddForce (new Vector3 (knockbackDir.x * -10, knockbackDir.y + knockbackPwr, transform.position.z));
+//
+//		}
+//
+//		yield return 0;
+//
+//	}
+
     void Die ()
     {
 		SceneManager.LoadScene("Proto_Platformer");
