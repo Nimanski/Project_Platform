@@ -11,6 +11,7 @@ public class Grab_Script : MonoBehaviour {
 	public Transform holdPoint;
 	public Transform rayPoint;
 
+
 	// Use this for initialization
 	void Start () {
 		

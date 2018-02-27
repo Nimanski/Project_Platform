@@ -7,7 +7,7 @@ public class Player_Health : MonoBehaviour
 {
 
     public int curHealth;
-	public int maxHealth = 3;
+	public int maxHealth = 1;
     public bool hasDied;
 
 	// Use this for initialization
@@ -32,6 +32,9 @@ public class Player_Health : MonoBehaviour
 		if (curHealth > maxHealth) {
 			curHealth = maxHealth;
 		}
+		if (curHealth < 0) {
+			curHealth = 0;
+		}
 
 		if (curHealth <= 0) {
 			Die ();
@@ -43,21 +46,7 @@ public class Player_Health : MonoBehaviour
 		curHealth -= dmg;
 
 	}
-
-//	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
-//
-//		float timer = 0;
-//		while(knockDur > timer) {
-//
-//			timer += Time.deltaTime;
-//
-//			GetComponent<Rigidbody2D> ().AddForce (new Vector3 (knockbackDir.x * -10, knockbackDir.y + knockbackPwr, transform.position.z));
-//
-//		}
-//
-//		yield return 0;
-//
-//	}
+		
 
     void Die ()
     {
