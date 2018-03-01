@@ -195,6 +195,15 @@ Prefab:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1185367853875494, guid: 36c60c1abab6b7a4aad64799afb1ccaf, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58934078084168966, guid: 36c60c1abab6b7a4aad64799afb1ccaf,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36c60c1abab6b7a4aad64799afb1ccaf, type: 2}
   m_IsPrefabParent: 0
@@ -561,6 +570,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574285057}
+--- !u!1001 &587469755
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 9.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.078125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366891660193804, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3e8a85dbf5c2d124f841e107185c6a99, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &619614487
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,7 +3306,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
