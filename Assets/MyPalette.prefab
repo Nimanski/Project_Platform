@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4383681989861036}
   - component: {fileID: 8195094281172873166}
   - component: {fileID: 3664157345740792232}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4302379039072440}
   - component: {fileID: 2569400265450884390}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: MyPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}

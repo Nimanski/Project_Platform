@@ -27,9 +27,9 @@ public class Grab_Script : MonoBehaviour {
             ThrowObject();
         }
 
-		if (grabbed)
+		if (grabbed) {
 			hit.collider.gameObject.transform.position = holdPoint.position;
-		
+		}
 	}
 
 	void OnDrawGizmos() {
@@ -45,12 +45,14 @@ public class Grab_Script : MonoBehaviour {
         if (hit.collider != null && hit.collider.tag == "grabbable")
         {
             grabbed = true;
+			hit.collider.gameObject.GetComponent<Rigidbody2D> ().freezeRotation = true;
         }
     }
 
     private void ThrowObject()
     {
         grabbed = false;
+		hit.collider.gameObject.GetComponent<Rigidbody2D> ().freezeRotation = false;
         if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
         {
             hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 2) * throwForce;
