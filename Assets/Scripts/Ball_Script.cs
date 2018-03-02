@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class Ball_Script : MonoBehaviour {
 
+	private ParticleSystem GoalSystem;
 
-
-	void OnTriggerEnter2D (Collider2D trig) {
-		if(trig.gameObject.tag == "goal") {
-			Debug.Log("Touched Goal");
-		}
-
+	void Awake() {
+		GoalSystem = GetComponent<ParticleSystem> ();
 	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+
+        if (col.CompareTag("grabbable")) {
+            Debug.Log(col.tag + "farts");
+            GoalSystem.Play ();
+		}
+	}
+
 
 }
 
