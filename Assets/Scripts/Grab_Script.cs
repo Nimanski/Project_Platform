@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Grab_Script : MonoBehaviour {
-
-	public bool grabbed;
+public class Grab_Script : MonoBehaviour
+{
+    #region Properties
+    public bool grabbed;
 	Collider2D hit;
     public float distance=2f;
 	public float throwForce;
 	public Transform holdPoint;
-	public Transform rayPoint;
     public float reachRadius = 1f;
     public LayerMask ballMask;
-
+    #endregion
 
     // Use this for initialization
     void Start () {
@@ -20,8 +18,10 @@ public class Grab_Script : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(Input.GetButtonDown("Grab")) {
+	void Update ()
+    {
+		if(Input.GetButtonDown("Grab"))
+        {
             GrabObject();
 		}
 
@@ -30,41 +30,43 @@ public class Grab_Script : MonoBehaviour {
             ThrowObject();
         }
 
-		if (grabbed) {
+		if (grabbed)
+        {
 			hit.gameObject.transform.position = holdPoint.position;
 		}
 	}
 
 	void OnDrawGizmos() {
-		Gizmos.color = Color.green;
-		Gizmos.DrawLine (rayPoint.position, rayPoint.position + Vector3.right * rayPoint.localScale.x * distance);
+		//Gizmos.color = Color.green;
+		//Gizmos.DrawLine (rayPoint.position, rayPoint.position + Vector3.right * rayPoint.localScale.x * distance);
     }
 
     private void GrabObject()
     {
-        //      Physics2D.queriesStartInColliders = false;
-        //hit = Physics2D.Raycast(rayPoint.position, Vector2.right * transform.localScale.x, distance);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, reachRadius, ballMask);
+
         foreach(var collider in colliders)
         {
             if (collider != null && collider.tag == "grabbable")
-
             {
                 grabbed = true;
                 hit = collider;
                 hit.gameObject.GetComponent<Rigidbody2D> ().freezeRotation = true;
             }
         }
-        
     }
 
     private void ThrowObject()
     {
         grabbed = false;
 		hit.gameObject.GetComponent<Rigidbody2D> ().freezeRotation = false;
+
         if (hit.gameObject.GetComponent<Rigidbody2D>() != null)
         {
-            hit.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 2) * throwForce;
+            var throwX = transform.localScale.x;
+            var throwY = Input.GetAxis("Vertical");
+            Debug.Log("throwY: " + throwY);
+            hit.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(throwX, throwY) * throwForce;
         }
     }
 }

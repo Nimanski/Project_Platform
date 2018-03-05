@@ -530,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &574285058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ Prefab:
     - target: {fileID: 114606417019445302, guid: cd0512c33f7fa7f47964b8275523e7c1,
         type: 2}
       propertyPath: throwForce
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114606417019445302, guid: cd0512c33f7fa7f47964b8275523e7c1,
         type: 2}
