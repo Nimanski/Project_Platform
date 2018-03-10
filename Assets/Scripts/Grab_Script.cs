@@ -3,7 +3,7 @@
 public class Grab_Script : MonoBehaviour
 {
     #region Properties
-    public bool grabbed;
+    public bool grabbed = false;
 	Collider2D hit;
     public float distance=2f;
 	public float throwForce;
@@ -34,9 +34,18 @@ public class Grab_Script : MonoBehaviour
         {
 			hit.gameObject.transform.position = holdPoint.position;
 		}
-	}
 
-	void OnDrawGizmos() {
+
+     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "forcefield")
+        {
+            grabbed = false;
+        }
+    }
+    void OnDrawGizmos() {
 		//Gizmos.color = Color.green;
 		//Gizmos.DrawLine (rayPoint.position, rayPoint.position + Vector3.right * rayPoint.localScale.x * distance);
     }

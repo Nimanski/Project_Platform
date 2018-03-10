@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask whatIsGround;
 	//variable to check double jump
 	public bool doubleJump;
+    public GameObject forceField;
 
 
-	void Start() {
+
+    void Start() {
 		anim = GetComponent<Animator> ();
 	}
 
@@ -56,13 +58,17 @@ public class PlayerController : MonoBehaviour {
 			Flip ();
 	}
 
-	void Update() {
-		if (Input.GetButtonDown ("Jump")) {
-			if(grounded) {
+	void Update()
+    {
+		if (Input.GetButtonDown ("Jump"))
+        {
+			if(grounded)
+            {
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
 				doubleJump = true;
 			} else {
-				if(doubleJump) {
+				if(doubleJump)
+                {
 					doubleJump = false;
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, 0);
 					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
@@ -71,18 +77,10 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-			
+        Physics2D.IgnoreCollision(forceField.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(forceField.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());
 
-//		if ((grounded || !doubleJump) && Input.GetButtonDown ("Jump")) {
-//			//not on the ground
-//			anim.SetBool("Ground", false);
-//			//add jump force to the Y axis of the rigidbody
-//			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
-//
-//			if (!doubleJump && !grounded)
-//				doubleJump = true;
-//		}
-	}
+    }
 
 	void Flip() {
 
