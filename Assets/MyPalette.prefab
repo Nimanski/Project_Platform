@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4383681989861036}
   - component: {fileID: 8195094281172873166}
   - component: {fileID: 3664157345740792232}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4302379039072440}
   - component: {fileID: 2569400265450884390}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: MyPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,6 +249,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 0, y: 6, z: 0}
+    second:
+      m_TileIndex: 12
+      m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
@@ -275,6 +284,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: bd36869da3b4d9842810a44163e07e12, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 36947206c3b00b241930e158ea315f45, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: dcfc7d261a1fc87499fddac37c071c53, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 65fc2ec6163c04c468bc52942639dca0, type: 3}
@@ -300,8 +311,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: c980e2680bddb9f40a289f8b484f3928, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 62984c4a06e928a4e9a5e34a4e940208, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 032cee0c2e577ae4eb48fba21ddb1f62, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 12
+  - m_RefCount: 13
     m_Data:
       e00: 1
       e01: 0
@@ -320,7 +333,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 12
+  - m_RefCount: 13
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -346,6 +359,8 @@ Tilemap:
     e32: 0
     e33: 1
   m_TileRefreshArray:
+  - serializedVersion: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1

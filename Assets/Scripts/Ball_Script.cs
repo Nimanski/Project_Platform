@@ -7,6 +7,7 @@ public class Ball_Script : MonoBehaviour {
 
 	private ParticleSystem GoalSystem;
 
+
 	void Awake() {
 		GoalSystem = GetComponent<ParticleSystem> ();
 	}
@@ -17,9 +18,10 @@ public class Ball_Script : MonoBehaviour {
             Debug.Log(col.tag + "farts");
             GoalSystem.Play ();
 		}
-	}
 
 
+    }
+    
 }
 
 	

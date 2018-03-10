@@ -9,6 +9,7 @@ TagManager:
   - coin
   - grabbable
   - goal
+  - forcefield
   layers:
   - Default
   - TransparentFX
