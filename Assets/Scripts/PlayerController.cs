@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	//how fast the player can move
-	public float topSpeed = 10f;
+    //grab
+    public bool grabbed;
+    Collider2D hit;
+    public float distance = 2f;
+    public float throwForce;
+    public Transform holdPoint;
+    public float reachRadius = 1f;
+    public LayerMask ballMask;
+
+    //how fast the player can move
+    public float topSpeed = 10f;
 	//tell the sprite which direction it is facing
 	bool facingRight = true;
 	//get reference to animator
@@ -22,9 +31,17 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask whatIsGround;
 	//variable to check double jump
 	public bool doubleJump;
-    public GameObject forceField;
 
+    //BetterJump
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
+    Rigidbody2D rb;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Start() {
 		anim = GetComponent<Animator> ();
@@ -44,8 +61,7 @@ public class PlayerController : MonoBehaviour {
 
 		//get how fast we are moving up or down from the rigidbody
 		anim.SetFloat ("vSpeed", GetComponent<Rigidbody2D> ().velocity.y);
-
-
+        
 		//add velocity to the rigidbody in the move direction * our speed
 		GetComponent<Rigidbody2D>().velocity = new Vector2(move * topSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
@@ -56,19 +72,31 @@ public class PlayerController : MonoBehaviour {
 			Flip ();
 		else if (move < 0 && facingRight)
 			Flip ();
-	}
 
-	void Update()
-    {
+        //BetterJump
+        if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = fallMultiplier;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.gravityScale = lowJumpMultiplier;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
+        }
+    }
+
+
+	void Update() {
 		if (Input.GetButtonDown ("Jump"))
         {
-			if(grounded)
-            {
+			if(grounded) {
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
 				doubleJump = true;
 			} else {
-				if(doubleJump)
-                {
+				if(doubleJump) {
 					doubleJump = false;
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, 0);
 					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
@@ -76,13 +104,52 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		}
+        if (Input.GetButtonDown("Grab"))
+        {
+            GrabObject();
+        }
 
-        Physics2D.IgnoreCollision(forceField.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
-        Physics2D.IgnoreCollision(forceField.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());
+        if (Input.GetButtonUp("Grab") && grabbed)
+        {
+            ThrowObject();
+        }
 
+        if (grabbed)
+        {
+            hit.gameObject.transform.position = holdPoint.position;
+        }
     }
 
-	void Flip() {
+    private void GrabObject()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, reachRadius, ballMask);
+
+        foreach (var collider in colliders)
+        {
+            if (collider != null && collider.tag == "grabbable")
+            {
+                grabbed = true;
+                hit = collider;
+                hit.gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+            }
+        }
+    }
+
+    private void ThrowObject()
+    {
+        grabbed = false;
+        hit.gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+
+        if (hit.gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            var throwX = transform.localScale.x;
+            var throwY = Input.GetAxis("Vertical");
+            Debug.Log("throwY: " + throwY);
+            hit.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(throwX, throwY) * throwForce;
+        }
+    }
+
+    void Flip() {
 
 		//saying we are facing the opposite direction
 		facingRight = !facingRight;
