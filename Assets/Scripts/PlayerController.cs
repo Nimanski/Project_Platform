@@ -94,14 +94,14 @@ public class PlayerController : MonoBehaviour {
         {
 			if(grounded) {
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
-				doubleJump = true;
-			} else {
-				if(doubleJump) {
-					doubleJump = false;
-					GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, 0);
-					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
+//				doubleJump = true;
+//			} else {
+//				if(doubleJump) {
+//					doubleJump = false;
+//					GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D>().velocity.x, 0);
+//					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
 
-				}
+				//}
 			}
 		}
         if (Input.GetButtonDown("Grab"))
